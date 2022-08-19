@@ -21,10 +21,7 @@ class MyForm : Form {
     public Color backgroundColor = Color.White;
     bool restarted = false; 
     string filename = null; 
-    OpenFileDialog openFile = new OpenFileDialog();
     SaveFileDialog save = new SaveFileDialog();
-    ToolStrip toolStrip1 = new ToolStrip(); 
-    ToolStrip toolStrip2 = new ToolStrip();
     public SolidBrush brush = new SolidBrush(Color.Black); 
     ToolStripButton colorButton, lineButton, rectButton, circleButton, filledRectButton, filledCircleButton, filledColorButton; 
     
@@ -111,17 +108,9 @@ class MyForm : Form {
 
         //toolStrips
 
-        toolStrip1.SuspendLayout(); 
-        toolStrip1.Items.Add(colorButton); 
-        toolStrip1.Text = "Pen Color"; 
-
         colorButton.AutoToolTip = false; 
         colorButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
         colorButton.ToolTipText = "Pen Color";
-
-        toolStrip2.SuspendLayout(); 
-        toolStrip2.Items.Add(filledColorButton);  
-        toolStrip2.Text = "Fill Color"; 
 
         filledColorButton.AutoToolTip = false;  
         filledColorButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
@@ -226,6 +215,7 @@ class MyForm : Form {
     //helper functions 
 
     public void _onSave(){
+        SaveFileDialog save = new SaveFileDialog();
         if (filename == null){
         save.DefaultExt = "png";
         if (save.ShowDialog() == DialogResult.Cancel){
@@ -241,6 +231,7 @@ class MyForm : Form {
     }
 
     public void _onOpen(){
+        OpenFileDialog openFile = new OpenFileDialog();
         if (openFile.ShowDialog() == DialogResult.OK){
             string name = openFile.FileName;
             image = new Bitmap(name); 
